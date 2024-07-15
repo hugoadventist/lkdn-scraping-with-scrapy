@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "linkedin-scrapy"
+version = "0.1.0"
+description = "scraping linkedin website to search jobs requirements"
+authors = ["hugoadventist <28987448+hugoadventist@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Scrapy = "^2.11.2"
+selenium = "^4.22.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
