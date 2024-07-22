@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "**/*.pyc": { "when": "$(basename).py" },
+    "**/__pycache__": true,
+    "**/*.pytest_cache": true
+  },
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "/home/hugoriviere/projects/python/lkdn-scraping-with-scrapy"
+  },
+  "livePreview.defaultPreviewPath": "/etl/etl/urls_to_linkedin-engenheiro-de-dados-pleno%0As%C3%A3o-paulo-sp-e-h%C3%ADbrido%0Aefetivo-at-cadastra-3961365586.html"
+}
