@@ -1,4 +1,4 @@
-# Scrapy settings for etl project
+# Scrapy settings for coleta project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,16 +7,19 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "etl"
+BOT_NAME = "coleta"
 
-SPIDER_MODULES = ["etl.spiders"]
-NEWSPIDER_MODULE = "etl.spiders"
+SPIDER_MODULES = ["coleta.spiders"]
+NEWSPIDER_MODULE = "coleta.spiders"
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"
 )
 
+# Splash Server Endpoint
+SPLASH_URL = "http://localhost:8050"
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = "etl (+http://www.yourdomain.com)"
+# USER_AGENT = "coleta (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -46,15 +49,19 @@ DOWNLOAD_DELAY = 2.5
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-# SPIDER_MIDDLEWARES = {
-#    "etl.middlewares.EtlSpiderMiddleware": 543,
-# }
+SPIDER_MIDDLEWARES = {
+    # "coleta.middlewares.coletaSpiderMiddleware": 543,
+    "scrapy_splash.SplashDeduplicateArgsMiddleware": 100,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#    "etl.middlewares.EtlDownloaderMiddleware": 543,
-# }
+DOWNLOADER_MIDDLEWARES = {
+    "scrapy_splash.SplashCookiesMiddleware": 723,
+    "scrapy_splash.SplashMiddleware": 725,
+    "scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware": 810,
+    # "coleta.middlewares.coletaDownloaderMiddleware": 543,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -65,7 +72,7 @@ DOWNLOAD_DELAY = 2.5
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # ITEM_PIPELINES = {
-#    "etl.pipelines.EtlPipeline": 300,
+#    "coleta.pipelines.coletaPipeline": 300,
 # }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -93,3 +100,6 @@ DOWNLOAD_DELAY = 2.5
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+# Define the Splash DupeFilter
+DUPEFILTER_CLASS = "scrapy_splash.SplashAwareDupeFilter"

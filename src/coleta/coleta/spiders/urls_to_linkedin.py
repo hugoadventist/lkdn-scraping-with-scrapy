@@ -1,6 +1,6 @@
 # from pathlib import Path
 import scrapy
-from ..services.json_load import JsonReader
+from src.coleta.coleta.services.json_load import JsonReader
 import re
 
 json_file = JsonReader()
